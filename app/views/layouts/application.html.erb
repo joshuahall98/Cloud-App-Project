@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GameReview</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+          <div class="navbar-header bold-letters">
+              <%= link_to "Game Review", root_path, class: "navbar-brand" %>          
+          </div>
+          
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <% if user_signed_in? %>
+                  <li class="nav-link active"><%= link_to "Add Game", new_game_path, class: "normal-link normal-link:hover"%></li>
+                <% end %>
+            </ul>
+
+            <ul class="nav navbar-nav">
+                <li class="dropdown nav-link active" style="padding-left:10px">
+                  <a class="nav-link dropdown-toggle bold-letters" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black">Genres</a>
+                  <ul class="dropdown-menu" role="menu">
+                      <% Category.all.each do |category| %>
+                          <li class="<%= 'active' if params[:category] == category.name %>">
+                            <%= link_to category.name, games_path(category: category.name), class: "link normal-link normal-link:hover" %>
+                          </li>
+                      <% end %>
+                  </ul>
+                </li>
+
+                <li class="nav-link active" style="padding-top:15px"><%= link_to "Sign Up", new_user_registration_path, class: "normal-link normal-link:hover" %></li>
+                <% if user_signed_in? %>
+                    <li style="padding-left:10px; padding-top:15px" class="nav-link active"><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "normal-link normal-link:hover" %></li>
+                <% else %>
+                    <li style="padding-left:10px; padding-top:15px" class="nav-link active"><%= link_to "Log In", new_user_session_path, class: "normal-link normal-link:hover" %></li>
+                <% end %>         
+            </ul>
+
+            
+          
+      </div>
+    </nav>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

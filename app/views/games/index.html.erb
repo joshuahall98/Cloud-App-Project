@@ -1,0 +1,26 @@
+<h1 class="current-category" style="font-weight:bold"><%= params[:category] %></h1>
+
+
+<% if @games.count == 0 %>
+    <h2>There are currently no games for this category</h2>
+<% else %>
+    <div style="padding-top:10px" class="row">
+
+        <% @games.each do |game| %>    
+
+            <div class="col-md-3">
+
+                <a href="/games/<%= game.id %>">
+                    <%= image_tag game.game_img.url(:game_index), class: "game" %>
+                </a>
+                <h2 ><%= link_to game.title, game_path(game), class:"normal-link" %></h2>
+
+    	    </div>
+
+        <% end %>
+
+    </div>
+<% end %>
+
+
+

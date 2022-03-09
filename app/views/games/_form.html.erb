@@ -1,0 +1,26 @@
+<%= simple_form_for @game, :html => { :multipart => true} do |f| %>
+
+    <div style="padding-top:10px">
+        <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select a category") %>
+    </div>
+
+    <div style="padding-top:10px">
+        <%= f.file_field :game_img%>
+    </div>
+
+    <div style="padding-top:10px">
+        <h3><%= f.input :title, label: "Game Title"%></h3>
+    </div>
+
+    <div style="padding-top:10px">
+        <h3><%= f.input :description%></h3>
+    </div>
+
+    <div style="padding-top:10px">
+        <h3><%= f.input :releaseYear, label:"Release Year"%></h3>
+    </div>
+
+    <div style="padding-top:10px">
+        <%= f.button :submit, class: 'submit-button' %>
+    </div>
+<% end %>

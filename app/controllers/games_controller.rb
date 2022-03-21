@@ -1,8 +1,5 @@
 class GamesController < ApplicationController
-<<<<<<< HEAD
-=======
     require 'httparty'
->>>>>>> Api update
     #these happen before anything else occurs
     before_action :find_game, only: [:show, :edit, :update, :destroy]
     before_action :authenticate_user!, only: [:new, :edit]

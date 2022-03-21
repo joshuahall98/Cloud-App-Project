@@ -20,11 +20,8 @@ gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'devise', '~> 4.8'
 # for saving pictures
 gem 'paperclip', '~> 6.1'
-<<<<<<< HEAD
-=======
 # httparty gem
 gem 'httparty'
->>>>>>> Api update
 # js
 gem 'jquery-rails'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker

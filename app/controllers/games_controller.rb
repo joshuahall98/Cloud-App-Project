@@ -15,9 +15,6 @@ class GamesController < ApplicationController
             @category_id = Category.find_by(name: params[:category]).id
             @games = Game.where(:category_id => @category_id).order("created_at DESC")
         end
-<<<<<<< HEAD
-    end
-=======
 
         #List of free to play PC games from https://github.com/public-apis/public-apis
         response = HTTParty.get("https://www.freetogame.com/api/games?platform=pc")
@@ -36,7 +33,6 @@ class GamesController < ApplicationController
 
         
     end   
->>>>>>> Api update
 
     def new
         @game = current_user.games.build

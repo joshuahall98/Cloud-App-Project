@@ -1,4 +1,8 @@
 class GamesController < ApplicationController
+<<<<<<< HEAD
+=======
+    require 'httparty'
+>>>>>>> Api update
     #these happen before anything else occurs
     before_action :find_game, only: [:show, :edit, :update, :destroy]
     before_action :authenticate_user!, only: [:new, :edit]
@@ -11,7 +15,28 @@ class GamesController < ApplicationController
             @category_id = Category.find_by(name: params[:category]).id
             @games = Game.where(:category_id => @category_id).order("created_at DESC")
         end
+<<<<<<< HEAD
     end
+=======
+
+        #List of free to play PC games from https://github.com/public-apis/public-apis
+        response = HTTParty.get("https://www.freetogame.com/api/games?platform=pc")
+        responseLoopString = response[0]["title"] if response.code == 200 
+
+        for apiloop in 1..100
+            responseLoop = response[apiloop]["title"] if response.code == 200
+            responseLoopString = responseLoopString + ", " + responseLoop
+        end
+
+        @httpresponse2 = responseLoopString
+
+        #pulling news for specific game pages using steam app ID
+        response = HTTParty.get("https://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=594650&count=3&maxlength=300&format=json")
+        @httpresponse = response.parsed_response["appnews"]["newsitems"] if response.code == 200
+
+        
+    end   
+>>>>>>> Api update
 
     def new
         @game = current_user.games.build

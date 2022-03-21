@@ -1,7 +1,12 @@
 <h1 class="current-category" style="font-weight:bold"><%= params[:category] %></h1>
 
+<<<<<<< HEAD
 
 <% if @games.count == 0 %>
+=======
+<% if @games.count == 0 %>
+    
+>>>>>>> Api update
     <h2>There are currently no games for this category</h2>
 <% else %>
     <div style="padding-top:10px" class="row">
@@ -19,8 +24,21 @@
 
         <% end %>
 
+<<<<<<< HEAD
     </div>
 <% end %>
+=======
+        
+    </div>
+<% end %>
+</br>
+</br>
+</br>
+<p><b>List of free to play PC games</b></p>
+<p><%= @httpresponse2 %></p>
+<p><b>Steam game news</b></p>
+<p><%= @httpresponse %></p>
+>>>>>>> Api update
 
 
 

@@ -1,0 +1,43 @@
+
+<div class="row">
+
+    <div class="col-md-4">
+        <%= image_tag @game.game_img.url(:game_show), class: "game-show" %>
+    </div>
+    
+    <div class="col-md-8">
+        <h1 style="font-weight:bold"><%= @game.title %></h1>
+        <h3>Genre: <%= @game.category.name%></h3>
+
+        <div style="padding-top:10px">
+            <p style="font-size:20px"><%= @game.description%></p>
+        </div>
+        <p>Released in <%= @game.releaseYear %></p>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <%= render @game.reviews %>
+
+        <div style="padding-top:30px">
+            <%= link_to "Add Review", new_game_review_path(@game) %>
+        </div>
+
+    </div>
+</div>
+
+<div style="padding-top:30px">
+    <%= link_to "Back", root_path %>
+
+    <% if user_signed_in?%>
+        <% if @game.user_id == current_user.id %>
+            <%= link_to "Edit", edit_game_path(@game) %>
+            <%= link_to "Delete", game_path(@game), method: :delete, data: { confirm: "Are you sure?"}%>
+        <% end %>
+    <% end %>
+</div>
+
+
